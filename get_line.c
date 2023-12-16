@@ -8,7 +8,7 @@
 
 void *gets_line(void)
 {
-	static int current_position, buffer_size;
+	static int current_position, buff_size;
 	static char buffer[BUFFER_SIZE];
 	char *user_input = NULL;
 	char current_char;
@@ -16,13 +16,13 @@ void *gets_line(void)
 
 	while (1)
 	{
-		if (current_position >= buffer_size)
+		if (current_position >= buff_size)
 		{
-			buffer_size = read(STDIN_FILENO, buffer, BUFFER_SIZE);
+			buff_size = read(STDIN_FILENO, buffer, BUFFER_SIZE);
 			current_position = 0;
-			if (buffer_size == 0)
+			if (buff_size == 0)
 				return (user_input);
-			else if (buffer_size < 0)
+			else if (buff_size < 0)
 			{
 				perror("read");
 				return (NULL);
